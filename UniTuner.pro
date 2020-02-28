@@ -14,25 +14,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    commands.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    mhtabbar.cpp \
-    mhtabwidget.cpp \
-    qcustomplot.cpp \
-    qenhancedtableview.cpp \
-    spinbox.cpp \
-    tablemodel.cpp
+    src/commands.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/mhtabbar.cpp \
+    src/mhtabwidget.cpp \
+    src/qcustomplot.cpp \
+    src/qenhancedtableview.cpp \
+    src/spinbox.cpp \
+    src/tablemodel.cpp
 
 HEADERS += \
-    commands.h \
-    mainwindow.h \
-    mhtabbar.h \
-    mhtabwidget.h \
-    qcustomplot.h \
-    qenhancedtableview.h \
-    spinbox.h \
-    tablemodel.h
+    src/commands.h \
+    src/mainwindow.h \
+    src/mhtabbar.h \
+    src/mhtabwidget.h \
+    src/qcustomplot.h \
+    src/qenhancedtableview.h \
+    src/spinbox.h \
+    src/tablemodel.h
 
 FORMS += \
     ui/celledit.ui \

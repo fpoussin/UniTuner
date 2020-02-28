@@ -91,7 +91,7 @@ class QCPBars;
 namespace QCP {
 /*!
   Defines the sides of a rectangular entity to which margins can be applied.
-  
+
   \see QCPLayoutElement::setAutoMargins, QCPAxisRect::setAutoMargins
 */
 enum MarginSide { msLeft = 0x01 ///< <tt>0x01</tt> left margin
@@ -112,9 +112,9 @@ Q_DECLARE_FLAGS(MarginSides, MarginSide)
   Defines what objects of a plot can be forcibly drawn antialiased/not antialiased. If an object is
   neither forcibly drawn antialiased nor forcibly drawn not antialiased, it is up to the respective
   element how it is drawn. Typically it provides a \a setAntialiased function for this.
-  
+
   \c AntialiasedElements is a flag of or-combined elements of this enum type.
-  
+
   \see QCustomPlot::setAntialiasedElements, QCustomPlot::setNotAntialiasedElements
 */
 enum AntialiasedElement { aeAxes = 0x0001 ///< <tt>0x0001</tt> Axis base line and tick marks
@@ -147,7 +147,7 @@ Q_DECLARE_FLAGS(AntialiasedElements, AntialiasedElement)
 
 /*!
   Defines plotting hints that control various aspects of the quality and speed of plotting.
-  
+
   \see QCustomPlot::setPlottingHints
 */
 enum PlottingHint { phNone = 0x000 ///< <tt>0x000</tt> No hints are set
@@ -164,9 +164,9 @@ Q_DECLARE_FLAGS(PlottingHints, PlottingHint)
 
 /*!
   Defines the mouse interactions possible with QCustomPlot.
-  
+
   \c Interactions is a flag of or-combined elements of this enum type.
-  
+
   \see QCustomPlot::setInteractions
 */
 enum Interaction { iRangeDrag = 0x001 ///< <tt>0x001</tt> Axis ranges are draggable (see \ref QCPAxisRect::setRangeDrag, \ref QCPAxisRect::setRangeDragAxes)
@@ -188,7 +188,7 @@ enum Interaction { iRangeDrag = 0x001 ///< <tt>0x001</tt> Axis ranges are dragga
 Q_DECLARE_FLAGS(Interactions, Interaction)
 
 /*! \internal
-  
+
   Returns whether the specified \a value is considered an invalid data value for plottables (i.e.
   is \e nan or \e +/-inf). This function is used to check data validity upon replots, when the
   compiler flag \c QCUSTOMPLOT_CHECK_DATA is set.
@@ -200,7 +200,7 @@ inline bool isInvalidData(double value)
 
 /*! \internal
   \overload
-  
+
   Checks two arguments instead of one.
 */
 inline bool isInvalidData(double value1, double value2)
@@ -209,9 +209,9 @@ inline bool isInvalidData(double value1, double value2)
 }
 
 /*! \internal
-  
+
   Sets the specified \a side of \a margins to \a value
-  
+
   \see getMarginValue
 */
 inline void setMarginValue(QMargins &margins, QCP::MarginSide side, int value)
@@ -238,10 +238,10 @@ inline void setMarginValue(QMargins &margins, QCP::MarginSide side, int value)
 }
 
 /*! \internal
-  
+
   Returns the value of the specified \a side of \a margins. If \a side is \ref QCP::msNone or
   \ref QCP::msAll, returns 0.
-  
+
   \see setMarginValue
 */
 inline int getMarginValue(const QMargins &margins, QCP::MarginSide side)
@@ -588,22 +588,22 @@ Q_DECLARE_TYPEINFO(QCPRange, Q_MOVABLE_TYPE);
 /* documentation of inline functions */
 
 /*! \fn QCPRange &QCPRange::operator+=(const double& value)
-  
+
   Adds \a value to both boundaries of the range.
 */
 
 /*! \fn QCPRange &QCPRange::operator-=(const double& value)
-  
+
   Subtracts \a value from both boundaries of the range.
 */
 
 /*! \fn QCPRange &QCPRange::operator*=(const double& value)
-  
+
   Multiplies both boundaries of the range by \a value.
 */
 
 /*! \fn QCPRange &QCPRange::operator/=(const double& value)
-  
+
   Divides both boundaries of the range by \a value.
 */
 
@@ -945,13 +945,13 @@ class QCP_LIB_DECL QCPLineEnding
 public:
     /*!
     Defines the type of ending decoration for line-like items, e.g. an arrow.
-    
+
     \image html QCPLineEnding.png
-    
+
     The width and length of these decorations can be controlled with the functions \ref setWidth
     and \ref setLength. Some decorations like \ref esDisc, \ref esSquare, \ref esDiamond and \ref esBar only
     support a width, the length property is ignored.
-    
+
     \see QCPItemLine::setHead, QCPItemLine::setTail, QCPItemCurve::setHead, QCPItemCurve::setTail, QCPAxis::setLowerEnding, QCPAxis::setUpperEnding
   */
     Q_ENUMS(EndingStyle)
@@ -1129,7 +1129,7 @@ public:
     /*!
     When automatic tick label generation is enabled (\ref setAutoTickLabels), defines how the
     coordinate of the tick is interpreted, i.e. translated into a string.
-    
+
     \see setTickLabelType
   */
     enum LabelType { ltNumber ///< Tick coordinate is regarded as normal number and will be displayed as such. (see \ref setNumberFormat)
@@ -1139,7 +1139,7 @@ public:
     Q_ENUMS(LabelType)
     /*!
     Defines on which side of the axis the tick labels (numbers) shall appear.
-    
+
     \see setTickLabelSide
   */
     enum LabelSide { lsInside ///< Tick labels will be displayed inside the axis rect and clipped to the inner axis rect
@@ -1624,7 +1624,7 @@ public:
     /*!
     Defines the ways an item position can be specified. Thus it defines what the numbers passed to
     \ref setCoords actually mean.
-    
+
     \see setType
   */
     enum PositionType { ptAbsolute ///< Static positioning in pixels, starting from the top left corner of the viewport/widget.
@@ -1986,7 +1986,7 @@ class QCP_LIB_DECL QCPColorGradient
 public:
     /*!
     Defines the color spaces in which color interpolation between gradient stops can be performed.
-    
+
     \see setColorInterpolation
   */
     enum ColorInterpolation { ciRGB ///< Color channels red, green and blue are linearly interpolated
@@ -2279,7 +2279,7 @@ class QCP_LIB_DECL QCPLegend : public QCPLayoutGrid
 public:
     /*!
     Defines the selectable parts of a legend
-    
+
     \see setSelectedParts, setSelectableParts
   */
     enum SelectablePart { spNone = 0x000 ///< <tt>0x000</tt> None
@@ -2566,7 +2566,7 @@ Q_DECLARE_TYPEINFO(QCPData, Q_MOVABLE_TYPE);
 /*! \typedef QCPDataMap
   Container for storing \ref QCPData items in a sorted fashion. The key of the map
   is the key member of the QCPData instance.
-  
+
   This is the container in which QCPGraph holds its data.
   \see QCPData, QCPGraph::setData
 */
@@ -2739,7 +2739,7 @@ Q_DECLARE_TYPEINFO(QCPCurveData, Q_MOVABLE_TYPE);
 /*! \typedef QCPCurveDataMap
   Container for storing \ref QCPCurveData items in a sorted fashion. The key of the map
   is the t member of the QCPCurveData instance.
-  
+
   This is the container in which QCPCurve holds its data.
   \see QCPCurveData, QCPCurve::setData
 */
@@ -2837,7 +2837,7 @@ public:
     /*!
     Defines the ways the spacing between bars in the group can be specified. Thus it defines what
     the number passed to \ref setSpacing actually means.
-    
+
     \see setSpacingType, setSpacing
   */
     enum SpacingType { stAbsolute ///< Bar spacing is in absolute pixels
@@ -2901,7 +2901,7 @@ Q_DECLARE_TYPEINFO(QCPBarData, Q_MOVABLE_TYPE);
 /*! \typedef QCPBarDataMap
   Container for storing \ref QCPBarData items in a sorted fashion. The key of the map
   is the key member of the QCPBarData instance.
-  
+
   This is the container in which QCPBars holds its data.
   \see QCPBarData, QCPBars::setData
 */
@@ -2924,7 +2924,7 @@ public:
     /*!
     Defines the ways the width of the bar can be specified. Thus it defines what the number passed
     to \ref setWidth actually means.
-    
+
     \see setWidthType, setWidth
   */
     enum WidthType { wtAbsolute ///< Bar width is in absolute pixels
@@ -3216,7 +3216,7 @@ Q_DECLARE_TYPEINFO(QCPFinancialData, Q_MOVABLE_TYPE);
 /*! \typedef QCPFinancialDataMap
   Container for storing \ref QCPFinancialData items in a sorted fashion. The key of the map
   is the key member of the QCPFinancialData instance.
-  
+
   This is the container in which QCPFinancial holds its data.
   \see QCPFinancial, QCPFinancial::setData
 */
@@ -3239,7 +3239,7 @@ class QCP_LIB_DECL QCPFinancial : public QCPAbstractPlottable
 public:
     /*!
     Defines the possible representations of OHLC data in the plot.
-    
+
     \see setChartStyle
   */
     enum ChartStyle { csOhlc ///< Open-High-Low-Close bar representation
@@ -3746,7 +3746,7 @@ class QCP_LIB_DECL QCPItemTracer : public QCPAbstractItem
 public:
     /*!
     The different visual appearances a tracer item can have. Some styles size may be controlled with \ref setSize.
-    
+
     \see setStyle
   */
     enum TracerStyle { tsNone ///< The tracer is not visible

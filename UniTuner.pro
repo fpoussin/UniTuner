@@ -1,4 +1,4 @@
-QT += core gui widgets serialport network
+QT += core gui widgets serialport network printsupport
 
 CONFIG += c++11
 
@@ -14,14 +14,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    commands.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mhtabbar.cpp \
+    mhtabwidget.cpp \
+    qcustomplot.cpp \
+    qenhancedtableview.cpp \
+    spinbox.cpp \
+    tablemodel.cpp
 
 HEADERS += \
-    mainwindow.h
+    commands.h \
+    mainwindow.h \
+    mhtabbar.h \
+    mhtabwidget.h \
+    qcustomplot.h \
+    qenhancedtableview.h \
+    spinbox.h \
+    tablemodel.h
 
 FORMS += \
-    mainwindow.ui
+    celledit.ui \
+    headeredit.ui \
+    logs.ui \
+    main.ui \
+    mainwindow.ui \
+    spectrum.ui \
+    tasks.ui
 
 TRANSLATIONS += \
     res/lang/UniTuner_en_US.ts

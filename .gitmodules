@@ -1,0 +1,3 @@
+[submodule "qmsgpack"]
+	path = qmsgpack
+	url = git@github.com:fpoussin/qmsgpack.git

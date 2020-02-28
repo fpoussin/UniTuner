@@ -35,13 +35,12 @@ HEADERS += \
     tablemodel.h
 
 FORMS += \
-    celledit.ui \
-    headeredit.ui \
-    logs.ui \
-    main.ui \
-    mainwindow.ui \
-    spectrum.ui \
-    tasks.ui
+    ui/celledit.ui \
+    ui/headeredit.ui \
+    ui/logs.ui \
+    ui/mainwindow.ui \
+    ui/spectrum.ui \
+    ui/tasks.ui
 
 TRANSLATIONS += \
     res/lang/UniTuner_en_US.ts

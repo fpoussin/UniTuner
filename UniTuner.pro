@@ -1,4 +1,4 @@
-QT += core gui widgets serialport network printsupport
+QT = core gui widgets serialport network printsupport
 
 CONFIG += c++11
 
@@ -13,29 +13,37 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += src src/interfaces
+
 DEFINES += MSGPACK_STATIC
 include(qmsgpack/qmsgpack.pri)
 
 SOURCES += \
     src/commands.cpp \
+    src/interfaces/abstractinterface.cpp \
+    src/interfaces/motolinkinterface.cpp \
+    src/interfaces/rusefiinterface.cpp \
+    src/interfaces/simulatorinterface.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/mhtabbar.cpp \
-    src/mhtabwidget.cpp \
     src/qcustomplot.cpp \
+    src/qenhancedtablemodel.cpp \
     src/qenhancedtableview.cpp \
     src/spinbox.cpp \
-    src/tablemodel.cpp
+    src/tablewindow.cpp
 
 HEADERS += \
     src/commands.h \
+    src/interfaces/abstractinterface.h \
+    src/interfaces/motolinkinterface.h \
+    src/interfaces/rusefiinterface.h \
+    src/interfaces/simulatorinterface.h \
     src/mainwindow.h \
-    src/mhtabbar.h \
-    src/mhtabwidget.h \
     src/qcustomplot.h \
+    src/qenhancedtablemodel.h \
     src/qenhancedtableview.h \
     src/spinbox.h \
-    src/tablemodel.h
+    src/tablewindow.h
 
 FORMS += \
     ui/celledit.ui \
@@ -43,6 +51,7 @@ FORMS += \
     ui/logs.ui \
     ui/mainwindow.ui \
     ui/spectrum.ui \
+    ui/tablewindow.ui \
     ui/tasks.ui
 
 TRANSLATIONS += \

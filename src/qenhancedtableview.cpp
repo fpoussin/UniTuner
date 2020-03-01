@@ -4,7 +4,7 @@
 #include <QPainter>
 #include <QStaticText>
 #include <QMenu>
-#include "tablemodel.h"
+#include "qenhancedtablemodel.h"
 
 QEnhancedTableView::QEnhancedTableView(QWidget *parent)
     : QTableView(parent), mHeaderEditUi(new Ui::HeaderEdit), mCellEditUi(new Ui::CellEdit), mHeaderEditDialog(new QDialog), mCellEditDialog(new QDialog)
@@ -38,7 +38,7 @@ void QEnhancedTableView::setupConnections()
 void QEnhancedTableView::setModel(QAbstractItemModel *model)
 {
     QTableView::setModel(model);
-    TableModel *tbl = (TableModel *)this->model();
+    QEnhancedTableModel *tbl = (QEnhancedTableModel *)this->model();
     tbl->setView(this);
 
     QObject::connect(tbl, SIGNAL(cellValueChanged(int, int)), this, SLOT(setTabFocus()));
@@ -62,7 +62,7 @@ void QEnhancedTableView::showContextMenu(const QPoint &pos)
     QMenu myMenu;
 
     QPoint globalPos = this->viewport()->mapToGlobal(pos);
-    TableModel *model = (TableModel *)this->model();
+    QEnhancedTableModel *model = (QEnhancedTableModel *)this->model();
 
     if (mMenuReadOnly) {
         actions[0] = myMenu.addAction(tr("Clear selection"));
@@ -176,7 +176,7 @@ void QEnhancedTableView::setTabFocus()
 void QEnhancedTableView::applyCellChanges()
 {
     QModelIndexList selection = this->selectionModel()->selection().indexes();
-    TableModel *model = (TableModel *)this->model();
+    QEnhancedTableModel *model = (QEnhancedTableModel *)this->model();
     float value = mCellEditUi->sbValue->value();
     QVariant newdata;
 

@@ -1,5 +1,5 @@
-#ifndef TABLEMODEL_H
-#define TABLEMODEL_H
+#ifndef QEnhancedTableModel_H
+#define QEnhancedTableModel_H
 
 #include <QStandardItemModel>
 #include <QUndoStack>
@@ -9,12 +9,12 @@
 #include "qenhancedtableview.h"
 #include "commands.h"
 
-class TableModel : public QStandardItemModel
+class QEnhancedTableModel : public QStandardItemModel
 {
     Q_OBJECT
 public:
-    explicit TableModel(QUndoStack *stack, float min = -30, float max = 30, float def = 0, bool singlerow = false, bool permanent = true, QObject *parent = 0);
-    ~TableModel(void);
+    explicit QEnhancedTableModel(QUndoStack *stack, float min = -30, float max = 30, float def = 0, bool singlerow = false, bool permanent = true, QObject *parent = 0);
+    ~QEnhancedTableModel(void);
     bool isPermanent(void) { return mPermanent; }
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     void setDataFromArray(const quint8 *array, float multiplier);
@@ -108,4 +108,4 @@ private:
     QDoubleValidator mValidator;
 };
 
-#endif // TABLEMODEL_H
+#endif // QEnhancedTableModel_H

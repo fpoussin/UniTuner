@@ -1,8 +1,8 @@
-#include "tablemodel.h"
+#include "qenhancedtablemodel.h"
 #include <QLineEdit>
 #include <QDebug>
 
-TableModel::TableModel(QUndoStack *stack, float min, float max, float def, bool singlerow, bool permanent, QObject *parent)
+QEnhancedTableModel::QEnhancedTableModel(QUndoStack *stack, float min, float max, float def, bool singlerow, bool permanent, QObject *parent)
     : QStandardItemModel(parent), mStack(stack)
 {
     mMin = min;
@@ -33,11 +33,11 @@ TableModel::TableModel(QUndoStack *stack, float min, float max, float def, bool 
     this->fill(false);
 }
 
-TableModel::~TableModel()
+QEnhancedTableModel::~QEnhancedTableModel()
 {
 }
 
-bool TableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool QEnhancedTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     float val = value.toFloat();
     float newvalue = val;
@@ -82,7 +82,7 @@ bool TableModel::setData(const QModelIndex &index, const QVariant &value, int ro
     return result;
 }
 
-void TableModel::setDataFromArray(const quint8 *array, float multiplier)
+void QEnhancedTableModel::setDataFromArray(const quint8 *array, float multiplier)
 {
     QModelIndex idx;
     float data;
@@ -109,7 +109,7 @@ void TableModel::setDataFromArray(const quint8 *array, float multiplier)
     }
 }
 
-void TableModel::emptyData(const QModelIndex &index)
+void QEnhancedTableModel::emptyData(const QModelIndex &index)
 {
     QStandardItem *item = this->itemFromIndex(index);
     if (item == NULL)
@@ -119,7 +119,7 @@ void TableModel::emptyData(const QModelIndex &index)
     emit cellCleared(mId, index.row(), index.column());
 }
 
-QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant QEnhancedTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     QVariant data(QStandardItemModel::headerData(section, orientation, role));
     if (role == Qt::DisplayRole && orientation == Qt::Vertical) {
@@ -135,7 +135,7 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
     return data;
 }
 
-bool TableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
+bool QEnhancedTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
 {
     QVariant tmp(value);
     if (orientation == Qt::Horizontal) {
@@ -157,7 +157,7 @@ bool TableModel::setHeaderData(int section, Qt::Orientation orientation, const Q
     return QStandardItemModel::setHeaderData(section, orientation, tmp, role);
 }
 
-bool TableModel::setValue(uint row, uint col, const QVariant &value)
+bool QEnhancedTableModel::setValue(uint row, uint col, const QVariant &value)
 {
     QModelIndex idx = this->index(row, col);
     if (!idx.isValid())
@@ -166,7 +166,7 @@ bool TableModel::setValue(uint row, uint col, const QVariant &value)
     return this->setData(idx, value, Qt::UserRole);
 }
 
-bool TableModel::writeCellPeak(uint tp, uint rpm, QVariant &value)
+bool QEnhancedTableModel::writeCellPeak(uint tp, uint rpm, QVariant &value)
 {
     int row = -1;
     int col = -1;
@@ -185,7 +185,7 @@ bool TableModel::writeCellPeak(uint tp, uint rpm, QVariant &value)
     return true;
 }
 
-bool TableModel::writeCellAverage(uint tp, uint rpm, QVariant &value)
+bool QEnhancedTableModel::writeCellAverage(uint tp, uint rpm, QVariant &value)
 {
     int row = -1;
     int col = -1;
@@ -210,7 +210,7 @@ bool TableModel::writeCellAverage(uint tp, uint rpm, QVariant &value)
     return true;
 }
 
-void TableModel::highlightCell(int row, int col)
+void QEnhancedTableModel::highlightCell(int row, int col)
 {
     QFont font;
     if (mSinglerow)
@@ -243,7 +243,7 @@ void TableModel::highlightCell(int row, int col)
     mLastItem = item;
 }
 
-bool TableModel::getCell(uint tp, uint rpm, int *row, int *col)
+bool QEnhancedTableModel::getCell(uint tp, uint rpm, int *row, int *col)
 {
     int maxcol, maxrow;
 
@@ -286,17 +286,17 @@ bool TableModel::getCell(uint tp, uint rpm, int *row, int *col)
     return (*row >= 0 && *col >= 0);
 }
 
-void TableModel::setView(QEnhancedTableView *view)
+void QEnhancedTableModel::setView(QEnhancedTableView *view)
 {
     mView = view;
 }
 
-void TableModel::setId(uint id)
+void QEnhancedTableModel::setId(uint id)
 {
     mId = id;
 }
 
-void TableModel::rowsToArray(quint8 *data, int maxLen)
+void QEnhancedTableModel::rowsToArray(quint8 *data, int maxLen)
 {
     bool ok;
     uint value;
@@ -308,7 +308,7 @@ void TableModel::rowsToArray(quint8 *data, int maxLen)
     }
 }
 
-void TableModel::arrayToRows(const quint8 *data, int maxLen)
+void QEnhancedTableModel::arrayToRows(const quint8 *data, int maxLen)
 {
     Q_CHECK_PTR(data);
     for (int i = 0; i < this->rowCount() && i < maxLen; i++) {
@@ -316,7 +316,7 @@ void TableModel::arrayToRows(const quint8 *data, int maxLen)
     }
 }
 
-void TableModel::columnsToArray(quint8 *data, int maxLen)
+void QEnhancedTableModel::columnsToArray(quint8 *data, int maxLen)
 {
     bool ok;
     uint value;
@@ -328,7 +328,7 @@ void TableModel::columnsToArray(quint8 *data, int maxLen)
     }
 }
 
-void TableModel::arrayToColumns(const quint8 *data, int maxLen)
+void QEnhancedTableModel::arrayToColumns(const quint8 *data, int maxLen)
 {
     Q_CHECK_PTR(data);
     for (int i = 0; i < this->columnCount() && i < maxLen; i++) {
@@ -336,32 +336,32 @@ void TableModel::arrayToColumns(const quint8 *data, int maxLen)
     }
 }
 
-void TableModel::setSingleRow(bool val)
+void QEnhancedTableModel::setSingleRow(bool val)
 {
     mSinglerow = val;
 }
 
-QEnhancedTableView *TableModel::view()
+QEnhancedTableView *QEnhancedTableModel::view()
 {
     return mView;
 }
 
-void TableModel::setName(const QString name)
+void QEnhancedTableModel::setName(const QString name)
 {
     mName = name;
 }
 
-void TableModel::setMin(int min)
+void QEnhancedTableModel::setMin(int min)
 {
     mMin = min;
 }
 
-void TableModel::setMax(int max)
+void QEnhancedTableModel::setMax(int max)
 {
     mMax = max;
 }
 
-QColor TableModel::NumberToColor(float value, bool greenIsNegative, bool darkColor)
+QColor QEnhancedTableModel::NumberToColor(float value, bool greenIsNegative, bool darkColor)
 {
     QColor color;
     const float range = mMax - mMin;
@@ -387,17 +387,17 @@ QColor TableModel::NumberToColor(float value, bool greenIsNegative, bool darkCol
     return color;
 }
 
-int TableModel::getDefaultRpmAt(int index)
+int QEnhancedTableModel::getDefaultRpmAt(int index)
 {
     return mDefaultRpm.at(index);
 }
 
-int TableModel::getDefaultTpsAt(int index)
+int QEnhancedTableModel::getDefaultTpsAt(int index)
 {
     return mDefaultTps.at(index);
 }
 
-void TableModel::fill(bool random)
+void QEnhancedTableModel::fill(bool random)
 {
     mNumRow = mDefaultTps.size();
     mNumCol = mDefaultRpm.size();
